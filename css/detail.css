@@ -1,0 +1,255 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+header {
+    position: fixed;
+    z-index: 99;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 15fr;
+    background-color: #1b1b1b;
+}
+
+header .back {
+    display: inline-block;
+    padding: 15px 0 0 0;
+    text-align: center;
+    vertical-align: bottom;
+    width: 100%;
+    margin: 0 auto;
+}
+
+header .back i {
+    font-size: 1.5em;
+    color: white;
+}
+
+header .logo {
+    padding: 7px;
+}
+
+img {
+    display: block;
+}
+
+.movie-detail {
+    display: grid;
+    grid-template-columns: 1fr 9fr;
+    background-image: url("../images/headings.png");
+    background-size: cover;
+    object-position: center;
+    padding: 7em 15em 7em 5em;
+    gap: 30px;
+    text-shadow: 3px 3px 3px black;
+}
+
+.movie-detail h1 {
+    font-size: 3em; 
+    color: #DDD;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.movie-detail h3 { 
+    color: #DDD;
+    font-weight: 400;;
+}
+
+.movie-detail h5 {
+    color: #DDD;
+    font-weight: 200;
+}
+
+.movie-img img{
+    border-radius: 10px;
+    box-shadow: 3px 3px 3px grey;
+}
+
+.movie-detail .desc {
+    padding: 50px 0 0 0;
+}
+
+main {
+    padding: 30px 20px;
+}
+
+main h1 {
+    font-size: 1.5em;
+    color: #322d2d;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Open Sans', sans-serif;
+}
+
+main h1::after {
+    display: inline-block;
+    content: "";
+    height: 4px;
+    background: #b5b1ab;
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    margin-top: -2px;
+    margin-left: 10px;
+}
+
+main .content {
+    gap: 20px;
+    display: grid;
+    padding: 20px 10px 50px 10px;
+    grid-template-columns: repeat(6, 1fr);
+}
+
+main .content a {
+    text-decoration: none;
+    color: black;
+}
+
+main .content a:hover img {
+    transform: scale(1.5);
+    transition: all 3s ease;
+}
+
+main .content .card {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+main .content .card .title {
+    position: absolute;
+    display: inline-block;
+    width: 100%;
+    height: 10%;
+    padding: 2px 10px;
+    bottom: 0;
+    opacity: 0.8;
+    background-color: grey;
+    overflow: hidden;
+}
+
+main .content .card img{
+    width: 100%;
+}
+
+footer .sosmed {
+    font-size: 1.5em;
+    width: 10%;
+    padding: 10px 0;
+    gap: 30px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+footer .sosmed i {
+    color: white;
+}
+
+footer {
+	padding: 25px 0;
+	text-align: center;
+	color: white;
+	background-color: #1b1b1b;
+}
+
+@media only screen and (max-width: 1100px) {
+    header {
+        grid-template-columns: 1fr 5fr;
+    }
+
+    .movie-detail {
+        grid-template-columns: 1fr;
+        padding: 7em 5em 5em 5em;
+        text-align: center;
+    }
+
+    .movie-detail img {
+        margin: 0 auto;
+    }
+
+    .movie-detail .desc {
+        padding: 10px;
+        border-radius: 10px;
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+    
+    .movie-detail h1 {
+        font-size: 2em;
+    }
+
+    .movie-detail h3 { 
+        font-size: 1.2em;
+        font-weight: 300;
+    }
+
+    .movie-detail h5 {
+        padding: 10px;
+    }
+
+    main .content {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    footer .sosmed {
+        width: 30%;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .movie-detail {
+        padding: 7em 1em 5em 1em;
+    }
+    
+    main .content {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+}
+
+@media only screen and (max-width: 450px) {
+    .movie-detail h1 {
+        padding: 10px;
+        font-size: 1em;
+    }
+
+    .movie-detail h3 { 
+        font-size: 0.8em;
+        font-weight: 300;
+    }
+
+    .movie-detail h5 { 
+        font-size: 0.6em;
+    }
+    
+
+    footer .sosmed {
+        width: 50%;
+    }
+
+    main .content .card .title {
+        height: 10%;
+        font-size: 0.8em;
+    }
+
+}

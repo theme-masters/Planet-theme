@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Planet</title>
+    <link rel="stylesheet" href="css/detail.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"  integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+</head>
+<body>
+    <header>
+        <div class="back">
+            <a href="index.html"><i class="fas fa-arrow-left"></i></a>
+        </div>
+        <div class="logo">
+            <a href="index.html"><img src="images/logo.png" alt="logo" width="150"></a>
+        </div>
+    </header>
+
+    <div class="movie-detail">
+        <div class="movie-img">
+            <img id="img-movie" src="images/film.jpeg" alt="" width="200px" height="300px" >
+        </div>
+        <div class="desc">
+            <h1 id="title">Ralph Breaks The Internet</h1>
+            <h3 id="genres">Animation, Adventure, Comedy</h4>
+            <h3 id="rating">Rating : 7/10</h5>
+            <h5 id="overview">Taking place six years after saving the arcade from
+                Turbo's vengeance, the Sugar Rush arcade cabinet has broken,
+                forcing Ralph and Vanellope to travel to the Internet via the
+                newly-installed Wi-Fi router in Litwak's Arcade to retrieve
+                the piece capable of saving the game.
+            </h5> 
+        </div>
+    </div>
+    <main>
+        <div class="casting">
+            <h1 id="casting">Film Casts</h1>
+            <div class="content">
+                <a href="#">
+                    <div class="card">
+                        <img src="images/cast.jpg" alt="">
+                        <div class="title">
+                            Cast Name
+                        </div>
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="card">
+                        <img src="images/cast.jpg" alt="">
+                        <div class="title">
+                            Cast Name
+                        </div>
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="card">
+                        <img src="images/cast.jpg" alt="">
+                        <div class="title">
+                            Cast Name
+                        </div>
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="card">
+                        <img src="images/cast.jpg" alt="">
+                        <div class="title">
+                            cast Name
+                        </div>
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="card">
+                        <img src="images/cast.jpg" alt="">
+                        <div class="title">
+                            cast name
+                        </div>
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="card">
+                        <img src="images/cast.jpg" alt="">
+                        <div class="title">
+                            cast name
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="sosmed">
+            <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p>&copy; Movie Planet 2021 . All Rights Reserved.</p>
+    </footer>
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            const token = "01ae241ec98ea28e6420e34b95701a1b";
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            
+            const getDetailMovieDB = (url_api) => {
+                $.ajax({
+                    url: url_api
+                }).done(function(data) {
+                    console.log(data);
+                    $(".movie-detail").css('background-image', 'url(https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces/' + data.backdrop_path + ')');
+                    $("#img-movie").attr('src',`https://image.tmdb.org/t/p/w500${data.poster_path}`);
+                    $("#title").text(data.original_title);
+                    let genres = '';
+                    data.genres.forEach(function(item) {
+                        genres += `${item.name}, `;
+                    });
+                    $("#genres").text(genres);
+                    $("#rating").text(`Rating : ${data.vote_average}/10`);
+                    $("#overview").text(data.overview);
+                }).fail(function() {
+                    console.log("gagal dimuat")
+                });
+            }
+
+            const getCastsMovieDB = (url_api) => {
+                $.ajax({
+                    url: url_api
+                }).done(function(data) {
+                    console.log(data);
+                    let i = 0;
+                    $(".card").each(function() {
+                        $(this).find("img").attr('src',`https://www.themoviedb.org/t/p/w220_and_h330_face${data.cast[i].profile_path}`);
+                        $(this).find(".title").text(data.cast[i].name);
+                        i++;
+                    })
+                }).fail(function() {
+                    console.log("gagal dimuat")
+                });
+            }
+
+            if(urlParams.has('id')) {
+                const id = urlParams.get('id');
+                getDetailMovieDB(`https://api.themoviedb.org/3/movie/${id}?api_key=${token}&language=en-US`);
+                getCastsMovieDB(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${token}&language=en-US`);
+            }
+
+            
+        })
+    </script>
+</body>
+</html>
